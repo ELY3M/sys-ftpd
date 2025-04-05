@@ -1,6 +1,6 @@
 {
 	"name":	"sys-ftpd",
-	"version":	"1.0.5",
+	"version":	"1.0.6",
 	"program_id":	"0x420000000000000E",
 	"program_id_range_min":	"0x420000000000000E",
 	"program_id_range_max":	"0x420000000000000E",
