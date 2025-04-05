@@ -19,7 +19,11 @@
 
 #include "minIni.h"
 
-#define HEAP_SIZE 0xA7000
+#define SOCK_BUFFERSIZE 16384
+
+///old
+///#define HEAP_SIZE 0xA7000
+#define HEAP_SIZE 0x000540000
 
 // We aren't an applet.
 u32 __nx_applet_type = AppletType_None;
@@ -55,16 +59,27 @@ void __appInit(void)
     setsysExit();
 
     static const SocketInitConfig socketInitConfig = {
-        .tcp_tx_buf_size = 0x800,
-        .tcp_rx_buf_size = 0x800,
+/* old         
+		.tcp_tx_buf_size = 0x800,
+        .tcp_rx_buf_size = 0x800,		
         .tcp_tx_buf_max_size = 0x25000,
         .tcp_rx_buf_max_size = 0x25000,
-
         //We don't use UDP, set all UDP buffers to 0
         .udp_tx_buf_size = 0,
         .udp_rx_buf_size = 0,
-
         .sb_efficiency = 1,
+*/		
+		
+      .tcp_tx_buf_size = 8 * SOCK_BUFFERSIZE,
+      .tcp_rx_buf_size = 8 * SOCK_BUFFERSIZE,
+      .tcp_tx_buf_max_size = 16 * SOCK_BUFFERSIZE,
+      .tcp_rx_buf_max_size = 16 * SOCK_BUFFERSIZE,
+      .udp_tx_buf_size = 0x2400,
+      .udp_rx_buf_size = 0xA500,
+      .sb_efficiency = 8,		
+		
+		
+		
     };
     R_ASSERT(socketInitialize(&socketInitConfig));
     smExit();
