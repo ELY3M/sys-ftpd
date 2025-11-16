@@ -27,14 +27,14 @@
 #include <time.h>
 #include <unistd.h>
 #ifdef _3DS
-#    include <3ds.h>
-#    define lstat stat
+#include <3ds.h>
+#define lstat stat
 #elif defined(__SWITCH__)
-#    include <switch.h>
-#    define lstat stat
+#include <switch.h>
+#define lstat stat
 #else
-#    include <stdbool.h>
-#    define BIT(x) (1 << (x))
+#include <stdbool.h>
+#define BIT(x) (1 << (x))
 #endif
 #include "console.h"
 #include "led.h"
@@ -55,9 +55,9 @@
 int LISTEN_PORT;
 //#define LISTEN_PORT 5000
 #ifdef _3DS
-#    define DATA_PORT (LISTEN_PORT + 1)
+#define DATA_PORT (LISTEN_PORT + 1)
 #else
-#    define DATA_PORT 0 /* ephemeral port */
+#define DATA_PORT 0 /* ephemeral port */
 #endif
 
 #include "minIni.h"
@@ -1793,9 +1793,9 @@ static void
 update_free_space(void)
 {
 #if defined(_3DS) || defined(__SWITCH__)
-#    define KiB (1024.0)
-#    define MiB (1024.0 * KiB)
-#    define GiB (1024.0 * MiB)
+#define KiB (1024.0)
+#define MiB (1024.0 * KiB)
+#define GiB (1024.0 * MiB)
     char buffer[16];
     struct statvfs st;
     double bytes_free;
@@ -1840,9 +1840,9 @@ update_status(void)
 {
 #if defined(_3DS) || defined(__SWITCH__)
 //  console_set_status("\n" GREEN STATUS_STRING " "
-#    ifdef ENABLE_LOGGING
+#ifdef ENABLE_LOGGING
 //                     "DEBUG "
-#    endif
+#endif
     //                    CYAN "%s:%u" RESET,
     //                  inet_ntoa(serv_addr.sin_addr),
     //                ntohs(serv_addr.sin_port));
@@ -1858,9 +1858,9 @@ update_status(void)
         return -1;
     }
     console_set_status("\n" GREEN STATUS_STRING " test "
-#    ifdef ENABLE_LOGGING
-                       "DEBUG "
-#    endif
+#ifdef ENABLE_LOGGING
+                     "DEBUG "
+#endif
                        CYAN "%s:%u" RESET,
                        hostname,
                        ntohs(serv_addr.sin_port));
@@ -1885,9 +1885,9 @@ update_status(void)
     }
 
     console_set_status(GREEN STATUS_STRING " "
-#    ifdef ENABLE_LOGGING
-                                           "DEBUG "
-#    endif
+#ifdef ENABLE_LOGGING
+                                         "DEBUG "
+#endif
                        YELLOW "IP:" CYAN "%s " YELLOW "Port:" CYAN "%u" RESET,
                        hostname,
                        ntohs(serv_addr.sin_port));

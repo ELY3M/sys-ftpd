@@ -4,7 +4,7 @@
 	"program_id":	"0x420000000000000E",
 	"program_id_range_min":	"0x420000000000000E",
 	"program_id_range_max":	"0x420000000000000E",
-	"main_thread_stack_size":	"0x00004000",
+	"main_thread_stack_size":	"0x00024000",
 	"main_thread_priority":	49,
 	"default_cpu_id":	3,
 	"process_category":	0,

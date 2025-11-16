@@ -21,6 +21,7 @@
 
 #define SOCK_BUFFERSIZE 16384
 
+
 ///old
 ///#define HEAP_SIZE 0xA7000
 #define HEAP_SIZE 0x000540000
@@ -80,6 +81,9 @@ void __appInit(void)
 		
 		
 		
+		
+		
+		
     };
     R_ASSERT(socketInitialize(&socketInitConfig));
     smExit();
@@ -88,8 +92,6 @@ void __appInit(void)
 void __appExit(void)
 {
     socketExit();
-    hidsysExit();
-    hidExit();
     timeExit();
     fsdevUnmountAll();
     fsExit();
@@ -101,13 +103,13 @@ static loop_status_t loop(loop_status_t (*callback)(void))
 
     while (true)
     {
-        svcSleepThread(1e+7);
+		///old 
+        ///svcSleepThread(1e+7);
+		svcSleepThread(10000000L);
         status = callback();
         console_render();
         if (status != LOOP_CONTINUE)
             return status;
-        if (isPaused())
-            return LOOP_RESTART;
     }
     return LOOP_EXIT;
 }
@@ -127,28 +129,11 @@ int main(int argc, char** argv)
         unlink("/config/sys-ftpd/logs/ftpd.log");
     }
 
-    char buffer[100];
-    ini_gets("Pause", "disabled:", "0", buffer, 100, CONFIGPATH);
-
-    initPads();
-
-    //Checks if pausing is disabled in the config file, in which case it skips the entire pause initialization
-    if (strncmp(buffer, "1", 4) != 0)
-    {
-        Result rc = pauseInit();
-        if (R_FAILED(rc))
-            fatalThrow(rc);
-    }
-
     loop_status_t status = LOOP_RESTART;
 
     ftp_pre_init();
     while (status == LOOP_RESTART)
     {
-        while (isPaused())
-        {
-            svcSleepThread(1e+9);
-        }
 
         /* initialize ftp subsystem */
         if (ftp_init() == 0)
@@ -163,8 +148,6 @@ int main(int argc, char** argv)
             status = LOOP_EXIT;
     }
     ftp_post_exit();
-
-    pauseExit();
 
     return 0;
 }

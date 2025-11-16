@@ -15,9 +15,5 @@
         }                             \
     })
 
-Result pauseInit();
-void pauseExit();
-bool isPaused();
-void setPaused(bool newPaused);
 bool isHidHandheld();
 void initPads();
