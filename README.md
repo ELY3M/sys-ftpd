@@ -10,7 +10,7 @@ This is a lightweight FTP server that runs in the background on your Nintendo Sw
 Since it's lightweight, it occupies less memory on your console at the cost of transferring files a bit slower. If you want to transfer large files, I would suggest you install mtheall's [ftpd](https://github.com/mtheall/ftpd) separately and run it whenever you need to make a large file transfer.
 
 ## How to use
-1. Go to the [latest release](https://github.com/cathery/sys-ftpd/releases/latest) and download the sys-ftpd zip folder. (not the source code)
+1. Go to the [latest release](https://github.com/ELY3M/sys-ftpd/releases/latest) and download the sys-ftpd out.zip folder. (not the source code)
 2. Extract the contents of the folder to the root of your Nintendo Switch's SD card. (it should overlap with your existing atmosphere and config folders)
 3. Go to config/sys-ftpd/config.ini and set your username and password for the FTP server. (otherwise it won't let you connect)
    - Alternatively you can enable anonymous mode, which will let anyone in the network connect to your FTP server without credentials. (unsafe)
@@ -22,8 +22,6 @@ Since it's lightweight, it occupies less memory on your console at the cost of t
 6. You should now be able to enjoy accessing your Nintendo Switch files remotely.
 
 ## Other
-
-Hotkeys: To help with security while there is are no login credentials, debugging, or otherwise, you can pause/resume running the server using the PLUS+MINUS+X button combination.
 
 Sysmodule program ID: **420000000000000E**
 
@@ -52,16 +50,6 @@ anonymous:=0
 
 # anonymous:=1 -> Anyone can connect to the server. (dangerous!)
 # anonymous:=0 -> Only allows logging into the ftpd server with the correct username and password. user and password (in fields above) must be set.
-
-[Pause]
-disabled:=0
-keycombo:=PLUS+MINUS+X
-
-# disabled:=1 -> Disables allowing sys-ftpd to be paused by pressing the key combination.
-# disabled:=0 -> Allows sys-ftpd to be paused by pressing the key combination.
-# keycombo:=  -> The key combination used to pause sys-ftpd. Each key is separated by either a plus '+' or a space ' '. Up to 8 keys are allowed.
-# The list of valid keys is as follows:
-# A, B, X, Y, LS, RS, L, R, ZL, ZR, PLUS, MINUS, DLEFT, DUP, DRIGHT, DDOWN
 
 [LED]
 led:=1
