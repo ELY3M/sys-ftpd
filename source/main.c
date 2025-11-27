@@ -75,8 +75,8 @@ void __appInit(void)
       .tcp_rx_buf_size = 8 * SOCK_BUFFERSIZE,
       .tcp_tx_buf_max_size = 16 * SOCK_BUFFERSIZE,
       .tcp_rx_buf_max_size = 16 * SOCK_BUFFERSIZE,
-      .udp_tx_buf_size = 0x2400,
-      .udp_rx_buf_size = 0xA500,
+      .udp_tx_buf_size = 0,   // disable UDP
+      .udp_rx_buf_size = 0,   // disable UDP
       .sb_efficiency = 8,		
 		
 		
