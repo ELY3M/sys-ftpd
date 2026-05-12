@@ -10,7 +10,7 @@ jobs:
     runs-on: ubuntu-latest
     container:
       ##image: 'devkitpro/devkita64'
-      image: 'ghcr.io/ELY3M/devkita64'
+      image: 'ghcr.io/ely3m/devkita64'
 
     steps:
       - uses: actions/checkout@v4
