@@ -3563,7 +3563,7 @@ FTP_DECLARE(PASV)
  */
 FTP_DECLARE(PORT)
 {
-    char *addrstr, *p, *portstr;
+    char *addrstr, *p, *portstr = NULL;
     int commas = 0, rc;
     short port = 0;
     unsigned long val;
@@ -3603,7 +3603,7 @@ FTP_DECLARE(PORT)
     }
 
     /* make sure we got the right number of values */
-    if (commas != 5)
+    if (commas != 5 || portstr == NULL)
     {
         free(addrstr);
         ftp_send_response(session, 501, "%s\r\n", strerror(EINVAL));

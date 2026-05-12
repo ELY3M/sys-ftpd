@@ -1,0 +1,34 @@
+name: Build
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  build:
+    name: Test build
+    runs-on: ubuntu-latest
+    container:
+      ##image: 'devkitpro/devkita64'
+      image: 'ghcr.io/irneracoonovich/devkita64'
+
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+
+      - name: build
+        run: make -j2
+
+      - name: test
+        run: ls -la
+        
+      - name: Publish GitHub release
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: ${{ github.run_number }}
+          prerelease: false
+          draft: false
+          body: ${{ github.event.head_commit.message }}
+          files: Weather-and-Moon-Phase-app-for-Nintendo-Switch.nro, weather-gps.txt
+          name: "Switch Release #${{ github.run_number }}"
