@@ -10,7 +10,7 @@ jobs:
     runs-on: ubuntu-latest
     container:
       ##image: 'devkitpro/devkita64'
-      image: 'ghcr.io/irneracoonovich/devkita64'
+      image: 'ghcr.io/ELY3M/devkita64'
 
     steps:
       - uses: actions/checkout@v4
@@ -20,8 +20,8 @@ jobs:
       - name: build
         run: make -j2
 
-      - name: test
-        run: ls -la
+    - name: Zipping up Release folder
+      run: 7z a release.zip "${{ github.workspace }}\out"
         
       - name: Publish GitHub release
         uses: softprops/action-gh-release@v2
@@ -30,5 +30,5 @@ jobs:
           prerelease: false
           draft: false
           body: ${{ github.event.head_commit.message }}
-          files: Weather-and-Moon-Phase-app-for-Nintendo-Switch.nro, weather-gps.txt
+          files: release.zip
           name: "Switch Release #${{ github.run_number }}"
