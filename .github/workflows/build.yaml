@@ -27,7 +27,7 @@ jobs:
           ls -la out
         
       - name: Zipping up Release folder
-        run: 7z a release.zip "${{ github.workspace }}/out"
+        run: 7z a release.zip out
         
       - name: Publish GitHub release
         uses: softprops/action-gh-release@v2
