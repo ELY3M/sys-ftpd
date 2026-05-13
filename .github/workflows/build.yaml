@@ -19,9 +19,14 @@ jobs:
 
       - name: build
         run: make -j2
-
+        
+      - name: test
+        run: |
+          ls -la 
+          ls -la out
+        
       - name: Zipping up Release folder
-        run: 7z a release.zip "${{ github.workspace }}\out"
+        run: 7z a release.zip "${{ github.workspace }}/out"
         
       - name: Publish GitHub release
         uses: softprops/action-gh-release@v2
