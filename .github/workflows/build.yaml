@@ -22,6 +22,7 @@ jobs:
         
       - name: test
         run: |
+          pwd
           ls -la 
           ls -la out
         
